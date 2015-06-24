@@ -1,0 +1,42 @@
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<ul id="markdown-toc">
+  <li><a href="#simple-programs-with-boolean-variables">simple programs with boolean variables</a></li>
+</ul>
+
+<h1 id="simple-programs-with-boolean-variables">simple programs with boolean variables</h1>
+
+<pre><code>var programs = {
+  "x-&gt;y": function() {
+    var x = flip(0.5);
+    var y = x;
+    return [x, y];
+  },
+  "x&lt;-y": function() {
+    var y = flip(0.5);
+    var x = y;
+    return [x, y];
+  },
+  "x y": function() {
+    var x = flip(0.5);
+    var y = flip(0.5);
+    return [x, y];
+  },
+  "x&lt;-&gt;y": function() {
+    var x = flip(0.5);
+    var y = flip(0.5);
+    factor( x == y ? 0 : -Infinity );
+    return [x, y];
+  }
+}
+
+map(
+  function(prog_name) {
+    print(prog_name);
+    var prog = programs[prog_name];
+    print(Enumerate(prog));
+  },
+  ["x-&gt;y", "x&lt;-y", "x&lt;-&gt;y", "x y"]
+)
+"finished"
+</code></pre>
